@@ -57,7 +57,7 @@ def play_beep():
     """
     st.markdown(beep_js, unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns(3)
+col1, col2 = st.columns(2)
 
 with col1:
     if not st.session_state.monitoring:
@@ -73,10 +73,6 @@ with col2:
     if st.button("🗑️ Очистить лог"):
         clear_log()
         st.success("Лог очищен")
-
-with col3:
-    if st.button("🔄 Обновить вручную"):
-        st.experimental_rerun()
 
 current_time = time.time()
 if st.session_state.monitoring and (current_time - st.session_state.last_check >= check_interval):
@@ -98,5 +94,3 @@ log_df = load_log()
 if not log_df.empty:
     st.subheader("📋 История IP-адресов (таблица)")
     st.dataframe(log_df.sort_values("timestamp", ascending=False), use_container_width=True)
-
-
