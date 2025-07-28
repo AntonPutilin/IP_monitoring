@@ -105,5 +105,3 @@ if not log_df.empty:
     st.subheader("📋 История IP-адресов (таблица)")
     st.dataframe(log_df.sort_values("timestamp", ascending=False), use_container_width=True)
 
-if st.session_state.monitoring:
-    st.experimental_rerun()
