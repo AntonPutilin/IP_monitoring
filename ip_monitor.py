@@ -96,12 +96,7 @@ if st.session_state.monitoring and (current_time - st.session_state.last_check >
 
 log_df = load_log()
 if not log_df.empty:
-    log_df["timestamp"] = pd.to_datetime(log_df["timestamp"])
-    ip_counts = log_df.groupby(["timestamp", "ip"]).size().unstack(fill_value=0)
-
-    st.subheader("📈 История изменений IP (график)")
-    st.line_chart(ip_counts)
-
     st.subheader("📋 История IP-адресов (таблица)")
     st.dataframe(log_df.sort_values("timestamp", ascending=False), use_container_width=True)
+
 
